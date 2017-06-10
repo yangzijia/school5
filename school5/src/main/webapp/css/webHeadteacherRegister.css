@@ -1,0 +1,73 @@
+ .label_txt{
+ font-style:normal;
+  font-family: Arial, Helvetica, sans-serif;
+
+	font-size: 12px;	
+	color: #ff0000;
+ 
+ }
+
+ #form p { height:45px; margin:2px;padding:2px  2px 4px 2px;}
+#form  .red{color:#ff0000;}
+#form   {padding:30px   10px  9px  60px;margin:40px  auto  9px  auto;width:390px;border:solid 2px #91b5e7;font-style:normal;height:560px;}
+#form   label { width: 10px; padding-bottom:3px;margin-bottom:2px;padding-top:0px;margin-top:1px; }
+ #form   em { font-weight: bold; padding-right: 1px; vertical-align: top; }
+ #form  input{margin-bottom:1px;}    
+
+
+/*{margin:0;padding:0;list-style-type:none;}
+a,img{border:0;}
+.form label, .form input, .form select, .form textarea, .form button, .form .label{float:left;font-size:12px;}
+.fl{float:left;}
+.fr{float:right;}
+.fn{float:none;}
+.hide{display:none;}.invisible{visibility:hidden;}.overflow{overflow:hidden;}
+.clear{display:block;clear:both;height:0;overflow:hidden;}
+body{font:12px/180% Arial, Helvetica, sans-serif,"����";}
+/* yellow_button */
+/*.yellow_button{background:url(img/yellow_button.png);border:none;cursor:pointer;height:20px;line-height:36px; overflow:hidden; display:inline-block; text-align:center; font-size:14px; font-weight:800; color:#fff;background-position:0 0;width:139px;}
+
+.red{color:#ff0000;font-family:"����";font-weight:normal;}
+/* formbox */
+/*#formbox {padding:20px   10px  9px  50px;margin:40px  auto  9px  auto;width:400px;   border:solid 2px #91b5e7;}
+.fl  input{width:40px;}
+#formbox .item{padding-top:1px;height:46px;overflow:hidden;line-height:10px;}
+#formbox  .item a:link,#formbox .item a:visited{text-decoration:underline;}
+#formbox .label{width:80px;text-align:right;font-size:14px;}
+#formbox .span-150{width:80px;}
+#formbox .text{width:240px;height:16px;padding:2px 1px;border:1px solid #bbb;font-size:14px;font-family:arial,"����";}
+#formbox .text-1{width:100px;}
+#formbox .blank{width:16px;height:10px;margin:2px 5px 0;}
+#formbox .img img{height:26px;margin:0 5px;}
+#formbox .succeed{background:url(../images/passwordstrength.gif) no-repeat -105px 0;}
+#formbox .yellow_button{font-size:14px;font-weight:bold;color:#fff;border:none;cursor:pointer;}
+#formbox .highlight1{border:1px solid #EFA100;outline:2px solid #FFDC97;*border:2px solid #ffcc66;*padding:3px 2px;}
+#formbox .highlight2{border:1px solid #f00;outline:1px solid #FFC1C1;color:#f00;}
+#formbox .passwordbg{background:#FFF8EB;}
+#formbox .focus{color:#999;line-height:22px;*line-height:20px;}
+#formbox .null,#formbox .error{color:red;line-height:22px;*line-height:20px;}
+#formbox .checkbox{margin-top:6px;*margin-top:2px;}
+#formbox #referrer{color:#999;font-size:12px;}
+#formbox #protocol{margin:0px 5px 0 0;display:inline;}
+#passwordstrength{color:#999;line-height:22px;padding-right:10px;}
+#passwordstrength b{float:left;width:104px;height:13px;overflow:hidden;margin-top:5px;*margin-top:3px;}
+.strengthA b{background:url(../images/passwordstrength.gif) no-repeat 0 0;}
+.strengthB b{background:url(../images/passwordstrength.gif) no-repeat 0 -13px;}
+.strengthC b{background:url(../images/passwordstrength.gif) no-repeat 0 -26px;}
+
+/*#formbox-title{ position: relative;
+  left: -20px;
+  top: -20px;}
+*/
+
+
+/*#form{position: relative;
+  left:22px;
+  top: 12px;};
+
+
+
+
+
+
+

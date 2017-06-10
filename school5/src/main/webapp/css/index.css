@@ -1,0 +1,47 @@
+#header {
+	float:left;
+	width:980px;
+	height:120px;
+}
+#skin {
+	float:right;
+	margin:15px;
+	background-color:#FFF;
+	border:1px solid #fff;
+}
+#skin ul li {
+	list-style:none;
+	float:left;
+	height:15px;
+	width:15px;
+	text-indent:-9999px;
+	margin:0 2px;
+	overflow:hidden;
+	display:block;
+	background-image:url(../images/them.gif)
+}
+#skin_0 {
+	background-position:0 0;
+}
+#skin_1 {
+	background-position:-15px 0;
+}
+#skin_2 {
+	background-position:-30px 0;
+}
+#skin_3 {
+	background-position:-45px 0;
+}
+#skin_0.selected {
+	background-position:0 15px;
+}
+#skin_1.selected {
+	background-position:-15px 15px;
+}
+#skin_2.selected {
+	background-position:-30px 15px;
+}
+#skin_3.selected {
+	background-position:-45px 15px;
+}
+/*Download by http://www.codefans.net*/

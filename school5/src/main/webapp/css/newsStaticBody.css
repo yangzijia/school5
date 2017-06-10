@@ -1,0 +1,103 @@
+body {
+	margin:0;
+	padding:0;
+	color:#000;
+	padding:20px  91px  0px  98px;
+	height:500px;
+     border:1px dotted #fff;
+}
+#header {
+	width:960px;
+	height:180px;
+	margin:3px auto 18px 6px;	
+}
+#header #banner {
+	float:left;
+	width:960px;
+	height:190px;
+	background:url(../images/XG/banner.jpg) no-repeat 0 0;
+}
+#banner ul{
+    list-style:none;
+	padding:156px   20px  10px 20px; margin:0px;
+}
+#main {
+/*border:1px dotted #000;*/
+	width:960px;
+	margin:0 auto  0  6px;
+}
+#main  {	
+	width:960px;
+	height:270px;
+	margin-bottom:5px;
+	background:url(../images/XG/main_bg.jpg) no-repeat ;
+	/*border:1px dotted #000;*/
+}
+/*--XG  CSS--*/
+#main  h1 {
+	width:960px;
+	height:36px;
+	margin:0;
+	padding:0  20px;
+	background:url(../images/XG/main_bg_h1.jpg) no-repeat left top;
+	overflow:hidden;
+}
+#main  h1 a {
+	line-height:42px;
+	font-size:15px;
+	color:#f60;
+	text-decoration:none;
+}
+#main  h1 a:hover {
+	color:#03c;
+	text-decoration:underline;
+}
+#main  p {
+	width:900px;
+	margin:0 auto 8px auto;
+	text-indent:2em;
+	line-height:20px;
+	font-size:12px;
+	color:#333;
+}
+#main p a {
+	color:#03c;
+	text-decoration:none;
+}
+#main  p a:hover {
+	text-decoration:underline;
+}
+/*--xwzs   css--*/
+
+
+#footer {
+	width:960px;
+	height:40px;
+	margin:18px auto 0 6px;
+	padding:0px;
+	background:url(../images/XG/footer-bg-b.png) no-repeat 0 0;
+	/*border:1px dotted #000;*/
+}
+#footer p {
+	line-height:40px;
+	text-align:center;
+	font-size:13px;
+	color:#03c;
+}
+#footer p a {
+	color:#03c;
+	text-decoration:none;
+}
+#footer p a:hover {
+	text-decoration:underline;
+}
+.more {
+	margin:0px  auto;
+	padding:2px auto;
+	text-align: center;
+	padding: 15px 0
+}
+.more a {
+	color: #444;
+	padding: 0 5px;
+}

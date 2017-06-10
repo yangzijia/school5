@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+       http://www.springframework.org/schema/context 
+       http://www.springframework.org/schema/context/spring-context-4.1.xsd
+       http://www.springframework.org/schema/tx 
+       http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
+       http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring     
+       http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring/ehcache-spring-1.1.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd">
+<!-- 扫描注解Bean -->
+	<context:annotation-config/>
+	
+	
+	
+    <context:component-scan base-package="com.b505">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+	<context:property-placeholder location="classpath:jdbc.properties" />
+
+
+<!-- c3p0数据源配置方式-->
+ <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close"
+		p:driverClass="${jdbc.driverClassName}"
+		p:jdbcUrl="${jdbc.url}"
+		p:user="${jdbc.username}"
+		p:password="${jdbc.password}"
+		p:maxPoolSize="${jdbc.maxPoolSize}"
+		p:minPoolSize="${jdbc.minPoolSize}"
+		p:initialPoolSize="${jdbc.initialPoolSize}"
+		p:maxIdleTime="${jdbc.maxIdleTime}"
+		p:acquireIncrement="${jdbc.acquireIncrement}"
+		p:maxStatements="${jdbc.maxStatements}"
+		p:idleConnectionTestPeriod="${jdbc.idleConnectionTestPeriod}"
+	/> 
+	<!-- <bean id="jsonConverter"
+     class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">  <property name="supportedMediaTypes" value="application/json" />
+  </bean> -->
+  
+<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean" >
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="hibernateProperties">    
+			<props>    
+	            <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>    
+				<prop key="hibernate.show_sql">true</prop>
+				<!-- hibernate每次提交的sql数量 -->
+				<prop key="hibernate.jdbc.batch_size">20</prop>
+				<!-- 是设定JDBC的Statement读取数据的时候每次从数据库中取出的记录条数 -->
+				<prop key="hibernate.jdbc.fetch_size">50</prop>
+				<!-- 如果改为thread将不能开启事务 -->
+				<prop key="hibernate.current_session_context_class">org.springframework.orm.hibernate4.SpringSessionContext</prop>  
+				  <!-- 通过hibernate自动生成table -->
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.temp.use_jdbc_metadata_defaults ">false</prop>
+			</props>
+		</property>
+		<property name="packagesToScan">
+		<list>    
+			<value>com.b505.bean</value>
+		</list>
+	</property>
+</bean>
+<!-- start spring集中式声明 -->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">  
+       <tx:attributes>  
+            <tx:method name="saveUser*" />  
+            <tx:method name="get*"/>
+            <tx:method name="find*"/>
+            <tx:method name="update*"/>
+            <tx:method name="findUsers*" /> 
+            <tx:method name="delete*"/> 
+             <!--hibernate4必须配置为开启事务 否则 getCurrentSession()获取不到session   -->   
+            <tx:method name="*"  propagation="REQUIRED" /> 
+       </tx:attributes>  
+    </tx:advice>  
+      
+    <aop:config>  
+        <aop:pointcut id="productServiceMethods" expression="execution(* com.b505.service..*.*(..))"/>  
+       <aop:advisor advice-ref="txAdvice" pointcut-ref="productServiceMethods" />  
+    </aop:config>
+ <bean id="transactionManager"
+ 	class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+ 	<property name="sessionFactory" ref="sessionFactory"/>
+ </bean> 
+ 
+ </beans>

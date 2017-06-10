@@ -1,0 +1,55 @@
+  #main-img{ position: relative;
+  left: 230px;
+  top: 170px;
+
+
+}
+#head-img  img{
+     margin:0px 0px 10px 0px;
+padding:20px;
+}  
+.side{
+margin:10px 0px 0px 0px;
+border-left:solid 1px #d1d5e1;
+}
+#form{
+    margin:50px 0px 20px 0px;
+	padding: 0px ;
+	
+	 position: relative;
+  left: 6%;
+  top: 10%;}
+
+  input{
+  width:100px;
+  
+  }
+  input[type="radio"]{
+   width:16px;
+  }
+  #wrapper2 a{
+  font-size: 14px;
+  color: #9c86d4;
+  }
+   #wrapper3{
+   margin-top:10px;
+margin-right:0px;
+margin-left:300px;
+padding-right:0px;
+   width:242px;
+   height:150px;
+   }
+   #wrapper2 {
+	width:400px;
+height:25px;
+margin-top:30px;
+margin-right:0px;
+padding-right:0px;
+margin-bottom:3px;
+}
+.login_txt1 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 25px;
+	color: #e51010;
+}

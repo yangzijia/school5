@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    					http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/security 
+                        http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+	<!-- 开发环境可以放置 <debug /> 配置，会输出详细Security处理日志，正式环境建议屏蔽 <debug /> 配置 -->
+
+	<!-- 开启支持方法注解的权限控制： @PreAuthorize：该注解用来确定一个方法是否应该被执行。该注解后面跟着的是一个表达式，如果表达式的值为真，则该方法会被执行。如 
+		@PreAuthorize("hasRole('ROLE_USER')")就说明只有当前用户具有角色 ROLE_USER的时候才会执行。 @PostAuthorize：该注解用来在方法执行完之后进行访问控制检查。 
+		@PostFilter：该注解用来对方法的返回结果进行过滤。从返回的集合中过滤掉表达式值为假的元素。如@PostFilter("hasPermission(filterObject, 
+		'read')")说明返回的结果中只保留当前用户有读权限的元素。 @PreFilter：该注解用来对方法调用时的参数进行过滤。 -->
+	<global-method-security pre-post-annotations="enabled" />
+
+	<http pattern="/css/**" security="none" /><!-- 是忽略拦截某些资源的意思，主要是针对静态资源 -->
+	<http pattern="/images/**" security="none" />
+	<http pattern="/images/XG/**" security="none" />
+	<http pattern="/jqueryeasyui/**" security="none" />
+	<http pattern="/js/**" security="none" />
+	<http pattern="/kindEditor/**" security="none" />
+	<http pattern="/newsimg/**" security="none" />
+	<http pattern="/uploadcss/**" security="none" />
+	<http pattern="/uploadjs/**" security="none" />
+	<http pattern="/**/*.jpg" security="none" />
+	<http pattern="/**/*.png" security="none" />
+	<http pattern="/**/*.gif" security="none" />
+	<http pattern="/**/*.css" security="none" />
+	<http pattern="/**/*.js" security="none" />
+	<http pattern="/**/*.json" security="none" />
+	<http pattern="/index.html" security="none" />
+	<http pattern="/login.jsp" security="none" />
+	<http pattern="/loginCheck.html" security="none" />
+	<http pattern="/getVerifyCode.html" security="none" />
+	<http pattern="/access.html" security="none" />
+	<http pattern="/mapInStudent.html" security="none" /> 
+	<http pattern="/WeChat/api.html" security="none" /> 
+	<http use-expressions="true" entry-point-ref="authenticationProcessingFilterEntryPoint"
+		access-denied-page="/access.html">
+
+
+
+		<!-- 以上未列出的，也都必须验证才能访问 -->
+		<intercept-url pattern="/**" access="isAuthenticated()" />		
+		<form-login login-page="/index.html"
+			authentication-failure-url="/index.html?error=true" />
+			
+			
+		<!-- 检测失效的sessionId,超时时定位到另外一个URL -->
+		<session-management invalid-session-url="/index.html">
+			<concurrency-control max-sessions="1"
+				error-if-maximum-exceeded="true" expired-url="/index.html" /><!-- 后登陆的用户会把先登录的用户踢出系统，将concurrent-session-control设置为false -->
+		</session-management>
+
+         <!-- <custom-filter ref="validateCodeAuthenticationFilter" position="FORM_LOGIN_FILTER" 
+			/> -->
+		<!-- 增加一个自定义的filter，放在FILTER_SECURITY_INTERCEPTOR之前，实现用户、角色、权限、资源的数据库管理。 -->
+		<custom-filter ref="mySecurityFilter" before="FILTER_SECURITY_INTERCEPTOR" />
+		
+		<!-- 替换默认的LogoutFilter,自定义退出 -->
+			 <custom-filter ref="customLogoutFilter" position="LOGOUT_FILTER" />
+
+		<!-- 会话管理 默认30分钟 ，空闲30分钟后，自动销毁 -->
+		<session-management invalid-session-url="/index.html"
+			session-authentication-strategy-ref="currentControllerStrategy" />
+
+	</http>
+
+
+	<!-- 配置自定义的支持验证码等多功能过滤器 <beans:bean id="validateCodeAuthenticationFilter" 
+		init-method="init" class="com.b505.security.ValidateCodeUsernamePasswordAuthenticationFilter"> 
+		<beans:property name="filterProcessesUrl" value="/doLogin"></beans:property> 
+		<beans:property name="userNameParameter" value="userName"></beans:property> 
+		<beans:property name="passWordParameter" value="passWord"></beans:property> 
+		<beans:property name="successUrl" value="/admin.html"></beans:property> <beans:property 
+		name="failureUrl" value="/login.jsp"></beans:property> <beans:property name="authenticationManager" 
+		ref="myAuthenticationManager"></beans:property> </beans:bean> -->
+
+	<!-- 实现了UserDetailsService的Bean -->
+	<authentication-manager alias="myAuthenticationManager">
+		<authentication-provider user-service-ref="myUserDetailServiceImpl"></authentication-provider>
+	</authentication-manager>
+
+	<!-- 自定义UserDetailsService认证 -->
+	<beans:bean id="myUserDetailServiceImpl" class="com.b505.security.MyUserDetailServiceImpl"></beans:bean>
+
+	<!-- 未登录的切入点 -->
+	<beans:bean id="authenticationProcessingFilterEntryPoint"
+		class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+		<beans:property name="loginFormUrl" value="/index.html"></beans:property>
+		<beans:property name="forceHttps" value="false" />
+	</beans:bean>
+
+
+<beans:bean id="customLogoutFilter" class="com.b505.security.CustomLogoutFilter">
+         <!-- 处理退出的虚拟url -->
+         <beans:property name="filterProcessesUrl" value="/j_spring_security_logout" />
+         <!-- 退出处理成功后的默认显示url -->
+         <beans:constructor-arg index="0" value="/index.html" />
+         <beans:constructor-arg index="1">
+             <!-- 退出成功后的handler列表 -->
+             <beans:array>
+                 <beans:bean id="securityContextLogoutHandler"
+                     class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler" />
+                 <!-- 加入了开发人员自定义的退出成功处理 -->
+                 <beans:bean id="customLogoutSuccessHandler" class="com.b505.security.CustomLogoutHandler" />
+             </beans:array>
+         </beans:constructor-arg>
+     </beans:bean>
+
+</beans:beans>

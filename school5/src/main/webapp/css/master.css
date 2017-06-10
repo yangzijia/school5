@@ -1,0 +1,26 @@
+@charset "utf-8";
+
+body{margin:0; padding:0; font-size:12px; font-family:"Microsoft YaHei","微软雅黑",Verdana, Geneva, sans-serif; background-color:#eee;background-image:url(../images/adminImages/header_bg.png); background-repeat:repeat-x;}
+img{border:none}
+ul,li,ol{padding:0; margin:0; list-style:none}
+.clear{clear: both}
+
+.header{width:100%; height:150px; background-image:url(../images/adminImages/header_bg.png); background-repeat:repeat-x; overflow:visible; position:relative}
+.header_UserInfo{width:1260px;height:150px; background-image:url(../images/adminImages/header_img.png); background-repeat:no-repeat; background-position:0 0; overflow:hidden}
+
+.left_nav{float:left; width:220px; min-height:800px;; background-image:url(../images/adminImages/left_nav_bg.png); background-repeat:repeat-y; background-position:right 0; padding-top:20px;}
+.menu_fold{width:219px; height:29px; background-image:url(../images/adminImages/menu_fold_bg.png); background-repeat:repeat-x; background-position:0 0; color:white; font-weight:bold; font-size:14px; cursor:pointer; text-align:center; position:relative; border:1px solid #fff; border-right:none}
+.menu_fold_icon{display:block;width:12px;; height:13px; background-image:url(../images/adminImages/close_icon.png); background-position:0 0; background-repeat:no-repeat; position:absolute; right:7px;bottom:8px;}
+
+.root_menu_top{width:220px;height:7px; background-repeat:no-repeat;}
+.root_menu_bottom{width:220px;height:7px; background-repeat:no-repeat;}
+.root_menu_middle{width:220px; padding-top:5px; padding-bottom:5px;padding-left:20px;}
+.root_menu_title{font-size:16px;background-image:url(../images/adminImages/open_icon.png); background-position:0 5px; background-repeat:no-repeat; width:220px; height:25px; padding-left:20px; cursor:pointer}
+
+.sub_menu{font-size:12px; display:none; line-height:25px; padding-left:20px}
+.sub_menu_li{background-image:url(../images/adminImages/key_icon.png); background-repeat:no-repeat; background-position:0 7px;; padding-left:15px; }
+
+a:link{color:#333; text-decoration:none}
+a:visited{color:#333;text-decoration:none}
+a:hover{color:#830051; text-decoration:underline}
+a:active{color:#830051; text-decoration:underline}

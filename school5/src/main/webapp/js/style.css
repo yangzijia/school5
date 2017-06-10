@@ -1,0 +1,7 @@
+@charset "utf-8";
+/* CSS Document */
+ul li{list-style-type:none;
+      display: inline;
+	  padding: 3px 3px;
+	  };
+

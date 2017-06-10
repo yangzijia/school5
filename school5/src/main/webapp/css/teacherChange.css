@@ -1,0 +1,70 @@
+﻿@charset "utf-8";
+/* CSS Document */
+.form label, .form input, .form select,  .form button, .form .label{float:left;font-size:12px;}
+.fl{float:left;}
+.hide{display:none;}
+.clear{display:block;clear:both;height:0;overflow:hidden;}
+.red{color:#ff0000;font-family:"����";font-weight:normal;}
+/* formbox */
+#formbox {padding:30px   140px   0px  140px;
+margin:0px auto;width:420px; 
+  }
+
+#formbox .item{padding-top:1px;height:46px;overflow:hidden;line-height:10px;}
+#formbox  .item #formbox .item {text-decoration:underline;}
+#formbox .label{width:60px;text-align:right;font-size:14px;	font-family: Arial, Helvetica, sans-serif;color: #666666;}
+
+#formbox .text{width:240px;height:16px;padding:2px 1px;border:1px solid #bbb;font-size:12px;font-family:arial,"����";}
+
+#formbox .blank{width:16px;height:10px;margin:2px 5px 0;}
+
+#formbox .succeed{background:url(../images/passwordstrength.gif) no-repeat -105px 0;}
+
+#formbox .highlight1{border:1px solid #EFA100;outline:2px solid #FFDC97;*border:2px solid #ffcc66;*padding:3px 2px;}
+#formbox .highlight2{border:1px solid #f00;outline:1px solid #FFC1C1;color:#f00;}
+
+#formbox .focus{color:#999;line-height:22px;*line-height:20px;}
+#formbox .null,#formbox .error{color:red;line-height:22px;*line-height:20px;}
+#formbox .checkbox{margin-top:6px;*margin-top:2px;}
+
+
+#passwordstrength{color:#999;line-height:22px;padding-right:10px;}
+#passwordstrength b{float:left;width:104px;height:13px;overflow:hidden;margin-top:5px;*margin-top:3px;}
+.strengthA b{background:url(../images/passwordstrength.gif) no-repeat 0 0;}
+.strengthB b{background:url(../images/passwordstrength.gif) no-repeat 0 -13px;}
+.strengthC b{background:url(../images/passwordstrength.gif) no-repeat 0 -26px;}
+
+/*#formbox-title{ position: relative;
+  right: 100px;
+  top: 10px;}
+*/
+
+
+#form{position: relative;
+  left: -10px;
+  top: -20px;};
+
+#checkbox_p
+ {position: relative;
+  right:20px;
+  bottom: -30px;
+text-align:center;
+
+}
+
+#foot
+ {position: relative;
+  right:-130px;
+  bottom: -10px;
+}
+#login  {
+/*border: dashed 3px #ffffff;*/
+padding:0px  40px  0px    40px;  
+margin:40px  120px 10px 120px  ;
+}
+#wrapper{
+
+   background-image:url("../images/s-center.png");
+}
+
+
